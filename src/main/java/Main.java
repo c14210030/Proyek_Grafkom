@@ -102,7 +102,24 @@ public class Main {
         objects.get(0).getChildObject().get(2).scaleObject(0.15f, 0.38f, 0.15f);
         objects.get(0).getChildObject().get(2).rotateObject(0.5f, 0.0f, 0f, 1f);
         //kaki kanan
-        objects.get(0).getChildObject().add(new Ellipsoid(
+//        objects.get(0).getChildObject().add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
+//                Arrays.asList(0.0f, 0.0f, 0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objects.get(0).getChildObject().get(3).translateObject(-0.5f, -1.1f, 0f);
+//        objects.get(0).getChildObject().get(3).scaleObject(0.15f, 0.44f, 0.15f);
+
+        objects.get(0).getChildObject().add(new Cylinder(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -110,17 +127,33 @@ public class Main {
                 new ArrayList<>(),
                 new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
                 Arrays.asList(0.0f, 0.0f, 0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
+                0.065f,
+                0.25f,
+                0.065f,
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(3).translateObject(-0.5f, -1.1f, 0f);
-        objects.get(0).getChildObject().get(3).scaleObject(0.15f, 0.44f, 0.15f);
+        objects.get(0).getChildObject().get(3).translateObject(-0.07f, -0.4f, 0f);
 
         //kaki kiri
-        objects.get(0).getChildObject().add(new Ellipsoid(
+//        objects.get(0).getChildObject().add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
+//                Arrays.asList(0.0f, 0.0f, 0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objects.get(0).getChildObject().get(4).translateObject(0.5f, -1.1f, 0f);
+//        objects.get(0).getChildObject().get(4).scaleObject(0.15f, 0.44f, 0.15f);
+
+        objects.get(0).getChildObject().add(new Cylinder(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -128,14 +161,13 @@ public class Main {
                 new ArrayList<>(),
                 new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
                 Arrays.asList(0.0f, 0.0f, 0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
+                0.065f,
+                0.25f,
+                0.065f,
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(4).translateObject(0.5f, -1.1f, 0f);
-        objects.get(0).getChildObject().get(4).scaleObject(0.15f, 0.44f, 0.15f);
+        objects.get(0).getChildObject().get(4).translateObject(0.07f, -0.4f, 0f);
 
         //area mulut
         objects.get(0).getChildObject().add(new Ellipsoid(
@@ -286,8 +318,8 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
                 ),
                 new ArrayList<>(),
-//                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
-                new Vector4f(0f,0f,0f, 1.0f),
+                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
+//                new Vector4f(0f,0f,0f, 1.0f),
                 Arrays.asList(0.0f, 0.0f, 0.0f),
                 0.08f,
                 0.05f,
@@ -295,7 +327,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(13).translateObject(-0.08f,-0.68f,-0.02f);
+        objects.get(0).getChildObject().get(13).translateObject(-0.07f,-0.67f,-0.02f);
 
         //telapak kaki kiri
         objects.get(0).getChildObject().add(new Ellipsoid(
@@ -304,8 +336,8 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
                 ),
                 new ArrayList<>(),
-//                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
-                new Vector4f(0f,0f,0f, 1.0f),
+                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
+//                new Vector4f(0f,0f,0f, 1.0f),
                 Arrays.asList(0.0f, 0.0f, 0.0f),
                 0.08f,
                 0.05f,
@@ -313,7 +345,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(14).translateObject(0.08f,-0.68f,-0.02f);
+        objects.get(0).getChildObject().get(14).translateObject(0.07f,-0.67f,-0.02f);
     }
 
     public void input() {

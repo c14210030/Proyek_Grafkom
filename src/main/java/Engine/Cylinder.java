@@ -123,10 +123,14 @@ public class Cylinder extends Circle{
         for (double i = 0; i < 360; i+=0.1)
         {
             double x = centerPoint.get(0) + radiusX * (float)Math.cos(Math.toRadians(i));
-            double y = centerPoint.get(1) + radiusY * (float)Math.sin(Math.toRadians(i));
+//            double y = centerPoint.get(1) + radiusY * (float)Math.sin(Math.toRadians(i));
+            double z = centerPoint.get(2) + radiusZ * (float)Math.sin(Math.toRadians(i));
 
-            temp.add(new Vector3f((float)x, (float)y, 0.0f)); //salah satu titik dari circle pertama
-            temp.add(new Vector3f((float)x, (float)y, -radiusZ)); //salah satu titik dari circle kedua
+//            temp.add(new Vector3f((float)x, (float)y, 0.0f)); //salah satu titik dari circle pertama
+//            temp.add(new Vector3f((float)x, (float)y, -radiusZ)); //salah satu titik dari circle kedua
+
+            temp.add(new Vector3f((float)x, 0.0f, (float)z)); //salah satu titik dari circle pertama
+            temp.add(new Vector3f((float)x, -radiusY, (float)z)); //salah satu titik dari circle kedua
         }
 
         vertices = temp;
