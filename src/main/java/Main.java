@@ -24,13 +24,21 @@ public class Main {
 
     private ArrayList<Object> objectsPointsControl
             = new ArrayList<>();
-
+    Camera camera = new Camera();
+    Projection projection = new Projection(window.getWidth(),window.getHeight());
+    private EllipticCone stripMerah;
     private MouseInput mouseInput;
     int countDegree = 0;
+    float counterDegreeKaki = 30f;
+    float counterDegreeGeleng = 45f;
+    int gantiArah = 1;
+    float ybadan = 0f;
 
     public void init() {
         window.init();
         GL.createCapabilities();
+        camera.setPosition(0,0,0.5f);
+        camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(30.0f));
         mouseInput = window.getMouseInput();
         //code
         //kepala (parent)
@@ -50,24 +58,24 @@ public class Main {
         ));
         objects.get(0).scaleObject(0.53f, 0.45f, 0.5f);
         //badan
-        objects.get(0).getChildObject().add(new Ellipsoid(
-                        Arrays.asList(
-                                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                        ),
-                        new ArrayList<>(),
-                        new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
-                        Arrays.asList(0.0f, 0.0f, 0.0f),
-                        0.5f,
-                        0.5f,
-                        0.5f,
-                        36,
-                        18
-                ));
-        objects.get(0).getChildObject().get(0).scaleObject(0.32f, 0.45f, 0.32f);
-        objects.get(0).getChildObject().get(0).translateObject(0f, -0.3f, 0f);
+        objects.add(new Ellipsoid(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.5f,
+                0.5f,
+                0.5f,
+                36,
+                18
+        ));
+        objects.get(1).scaleObject(0.32f, 0.45f, 0.32f);
+        objects.get(1).translateObject(0f, -0.3f, 0f);
         //tangan kanan
-        objects.get(0).getChildObject().add(new Ellipsoid(
+        objects.add(new Ellipsoid(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -81,11 +89,11 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(1).translateObject(-0.3f, -0.9f, 0f);
-        objects.get(0).getChildObject().get(1).scaleObject(0.15f, 0.38f, 0.15f);
-        objects.get(0).getChildObject().get(1).rotateObject(0.5f, 0.0f, 0f, -1f);
+        objects.get(2).translateObject(-0.3f, -0.9f, 0f);
+        objects.get(2).scaleObject(0.15f, 0.38f, 0.15f);
+        objects.get(2).rotateObject(0.5f, 0.0f, 0f, -1f);
         //tangan kiri
-        objects.get(0).getChildObject().add(new Ellipsoid(
+        objects.add(new Ellipsoid(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -99,28 +107,11 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(2).translateObject(0.3f, -0.9f, 0f);
-        objects.get(0).getChildObject().get(2).scaleObject(0.15f, 0.38f, 0.15f);
-        objects.get(0).getChildObject().get(2).rotateObject(0.5f, 0.0f, 0f, 1f);
+        objects.get(3).translateObject(0.3f, -0.9f, 0f);
+        objects.get(3).scaleObject(0.15f, 0.38f, 0.15f);
+        objects.get(3).rotateObject(0.5f, 0.0f, 0f, 1f);
         //kaki kanan
-//        objects.get(0).getChildObject().add(new Ellipsoid(
-//                Arrays.asList(
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
-//                Arrays.asList(0.0f, 0.0f, 0.0f),
-//                0.5f,
-//                0.5f,
-//                0.5f,
-//                36,
-//                18
-//        ));
-//        objects.get(0).getChildObject().get(3).translateObject(-0.5f, -1.1f, 0f);
-//        objects.get(0).getChildObject().get(3).scaleObject(0.15f, 0.44f, 0.15f);
-
-        objects.get(0).getChildObject().add(new Cylinder(
+        objects.add(new Cylinder(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -134,27 +125,10 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(3).translateObject(-0.07f, -0.4f, 0f);
+        objects.get(4).translateObject(-0.07f, -0.4f, 0f);
 
         //kaki kiri
-//        objects.get(0).getChildObject().add(new Ellipsoid(
-//                Arrays.asList(
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(0.564f, 0.360f, 0.215f, 1.0f),
-//                Arrays.asList(0.0f, 0.0f, 0.0f),
-//                0.5f,
-//                0.5f,
-//                0.5f,
-//                36,
-//                18
-//        ));
-//        objects.get(0).getChildObject().get(4).translateObject(0.5f, -1.1f, 0f);
-//        objects.get(0).getChildObject().get(4).scaleObject(0.15f, 0.44f, 0.15f);
-
-        objects.get(0).getChildObject().add(new Cylinder(
+        objects.add(new Cylinder(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -168,7 +142,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(4).translateObject(0.07f, -0.4f, 0f);
+        objects.get(5).translateObject(0.07f, -0.4f, 0f);
 
         //area mulut
         objects.get(0).getChildObject().add(new Ellipsoid(
@@ -185,8 +159,8 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(5).translateObject(0f, -0.1f, -2.15f);
-        objects.get(0).getChildObject().get(5).scaleObject(0.12f, 0.15f, 0.1f);
+        objects.get(0).getChildObject().get(0).translateObject(0f, -0.1f, -2.15f);
+        objects.get(0).getChildObject().get(0).scaleObject(0.12f, 0.15f, 0.1f);
 
         //hidung
         objects.get(0).getChildObject().add(new Ellipsoid(
@@ -203,8 +177,8 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(6).translateObject(0f, 0f, -2.16f);
-        objects.get(0).getChildObject().get(6).scaleObject(0.1f, 0.1f, 0.1f);
+        objects.get(0).getChildObject().get(1).translateObject(0f, 0f, -2.16f);
+        objects.get(0).getChildObject().get(1).scaleObject(0.1f, 0.1f, 0.1f);
 
         //mata kanan
         objects.get(0).getChildObject().add(new Ellipsoid(
@@ -221,7 +195,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(7).translateObject(-0.03f, 0.07f, -0.225f);
+        objects.get(0).getChildObject().get(2).translateObject(-0.03f, 0.07f, -0.225f);
 
         //mata kiri
         objects.get(0).getChildObject().add(new Ellipsoid(
@@ -238,7 +212,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(8).translateObject(0.03f, 0.07f, -0.225f);
+        objects.get(0).getChildObject().get(3).translateObject(0.03f, 0.07f, -0.225f);
 
         //telinga kanan luar
         objects.get(0).getChildObject().add(new EllipticParaboloid(
@@ -255,8 +229,8 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(9).rotateObject(135f, 0f,1f,0f);
-        objects.get(0).getChildObject().get(9).translateObject(-0.14f,0.19f,0f);
+        objects.get(0).getChildObject().get(4).rotateObject(135f, 0f, 1f, 0f);
+        objects.get(0).getChildObject().get(4).translateObject(-0.14f, 0.19f, 0f);
 
         //telinga kiri luar
         objects.get(0).getChildObject().add(new EllipticParaboloid(
@@ -273,8 +247,8 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(10).rotateObject(135f, 0f,1f,0f);
-        objects.get(0).getChildObject().get(10).translateObject(0.14f,0.19f,0f);
+        objects.get(0).getChildObject().get(5).rotateObject(135f, 0f, 1f, 0f);
+        objects.get(0).getChildObject().get(5).translateObject(0.14f, 0.19f, 0f);
 
         //telinga kanan dalam
         objects.get(0).getChildObject().add(new EllipticParaboloid(
@@ -291,8 +265,8 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(11).rotateObject(135f, 0f,1f,0f);
-        objects.get(0).getChildObject().get(11).translateObject(-0.139f,0.19f,-0.02f);
+        objects.get(0).getChildObject().get(6).rotateObject(135f, 0f, 1f, 0f);
+        objects.get(0).getChildObject().get(6).translateObject(-0.139f, 0.19f, -0.02f);
 
         //telinga kiri dalam
         objects.get(0).getChildObject().add(new EllipticParaboloid(
@@ -309,11 +283,11 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(12).rotateObject(135f, 0f,1f,0f);
-        objects.get(0).getChildObject().get(12).translateObject(0.139f,0.19f,-0.02f);
+        objects.get(0).getChildObject().get(7).rotateObject(135f, 0f, 1f, 0f);
+        objects.get(0).getChildObject().get(7).translateObject(0.139f, 0.19f, -0.02f);
 
         //telapak kaki kanan
-        objects.get(0).getChildObject().add(new Ellipsoid(
+        objects.add(new Ellipsoid(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -328,10 +302,10 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(13).translateObject(-0.07f,-0.67f,-0.02f);
+        objects.get(6).translateObject(-0.07f, -0.67f, -0.02f);
 
         //telapak kaki kiri
-        objects.get(0).getChildObject().add(new Ellipsoid(
+        objects.add(new Ellipsoid(
                 Arrays.asList(
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
@@ -346,7 +320,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(14).translateObject(0.07f,-0.67f,-0.02f);
+        objects.get(7).translateObject(0.07f, -0.67f, -0.02f);
 
         //garis mulut kebawah
         objects.get(0).getChildObject().add(new Cylinder(
@@ -363,7 +337,7 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(15).translateObject(0f,0f,-0.257f);
+        objects.get(0).getChildObject().get(8).translateObject(0f, 0f, -0.257f);
 
         //garis mulut kesamping kanan
         objects.get(0).getChildObject().add(new Cylinder(
@@ -380,9 +354,9 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(16).rotateObject((float)Math.toRadians(-30),0f,0f,1f);
-        objects.get(0).getChildObject().get(16).rotateObject((float)Math.toRadians(-25),1f,0f,0f);
-        objects.get(0).getChildObject().get(16).translateObject(-0.0031f,-0.032f,-0.257f);
+        objects.get(0).getChildObject().get(9).rotateObject((float) Math.toRadians(-30), 0f, 0f, 1f);
+        objects.get(0).getChildObject().get(9).rotateObject((float) Math.toRadians(-25), 1f, 0f, 0f);
+        objects.get(0).getChildObject().get(9).translateObject(-0.0031f, -0.032f, -0.257f);
 
         //garis mulut kesamping kiri
         objects.get(0).getChildObject().add(new Cylinder(
@@ -399,9 +373,43 @@ public class Main {
                 36,
                 18
         ));
-        objects.get(0).getChildObject().get(17).rotateObject((float)Math.toRadians(45),0f,0f,1f);
-        objects.get(0).getChildObject().get(17).rotateObject((float)Math.toRadians(-30),1f,0f,0f);
-        objects.get(0).getChildObject().get(17).translateObject(0.0031f,-0.032f,-0.257f);
+        objects.get(0).getChildObject().get(10).rotateObject((float) Math.toRadians(45), 0f, 0f, 1f);
+        objects.get(0).getChildObject().get(10).rotateObject((float) Math.toRadians(-30), 1f, 0f, 0f);
+        objects.get(0).getChildObject().get(10).translateObject(0.0031f, -0.032f, -0.257f);
+
+        //celana dalam putih polos
+        objects.add(new EllipticCone(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1f, 1f, 1f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.034f,
+                0.034f,
+                0.035f,
+                36,
+                18
+        ));
+        objects.get(8).translateObject(0f, -0.57f, 0f);
+
+//        //garis merah celana dalam (gak jd)
+//        stripMerah = new EllipticCone(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1f, 0f, 0f, 1.0f),
+//                Arrays.asList(0.0f, 0.0f, 0.0f),
+//                0.0345f,
+//                0.0345f,
+//                0.0355f,
+//                36,
+//                18
+//        );
+//        stripMerah.translateObject(0f, -0.57f, 0f);
     }
 
     public void input() {
@@ -423,42 +431,233 @@ public class Main {
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(0.5f), 1.0f, 0.0f, 0.0f);
             }
+//            stripMerah.rotateObject((float) Math.toRadians(0.5f), 1.0f, 0.0f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_Y)) {
+            setYbadan(0.5f);
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(0.5f), 0.0f, 1.0f, 0.0f);
             }
+//            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 1.0f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_Z)) {
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(0.5f), 0.0f, 0.0f, 1.0f);
             }
+//            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 0.0f, 1.0f);
         }
 
+        //animasi jalan kaki tgn juga gerak
+        if (window.isKeyPressed(GLFW_KEY_R)) {
+            float degree = 0.7f;
+            System.out.println("count degree kaki: " + counterDegreeKaki);
+            if (counterDegreeKaki >= 60f) {
+                gantiArah *= -1;
+                counterDegreeKaki = 0;
+                System.out.println("ganti arah");
+            }
+            for (Object object : objects) {
+                object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
+            }
+            //kaki kanan
+            List<Float> tempp = new ArrayList<>(objects.get(4).getCenterPoint());
+            objects.get(4).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objects.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+            objects.get(4).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            //kaki kiri
+            List<Float> temp1 = new ArrayList<>(objects.get(5).getCenterPoint());
+            objects.get(5).translateObject(temp1.get(0)*-1,temp1.get(1)*-1,temp1.get(2)*-1);
+            objects.get(5).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+            objects.get(5).translateObject(temp1.get(0)*1,temp1.get(1)*1,temp1.get(2)*1);
+            //telapak kaki kanan
+            objects.get(6).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objects.get(6).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+            objects.get(6).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            //telapak kaki kiri
+            objects.get(7).translateObject(temp1.get(0)*-1,temp1.get(1)*-1,temp1.get(2)*-1);
+            objects.get(7).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+            objects.get(7).translateObject(temp1.get(0)*1,temp1.get(1)*1,temp1.get(2)*1);
+            //tangan kanan
+            List<Float> temp2 = new ArrayList<>(objects.get(2).getCenterPoint());
+            objects.get(2).translateObject(temp2.get(0)*-1,temp2.get(1)*-1,temp2.get(2)*-1);
+            objects.get(2).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 1f, 0f,0f);
+            objects.get(2).translateObject(temp2.get(0)*1,temp2.get(1)*1,temp2.get(2)*1);
+            //tangan kiri
+            List<Float> temp3 = new ArrayList<>(objects.get(3).getCenterPoint());
+            objects.get(3).translateObject(temp3.get(0)*-1,temp3.get(1)*-1,temp3.get(2)*-1);
+            objects.get(3).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
+            objects.get(3).translateObject(temp3.get(0)*1,temp3.get(1)*1,temp3.get(2)*1);
+            for (Object object : objects) {
+                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
+            }
+            counterDegreeKaki += degree;
+        }
+
+        //animasi kepala geleng2
+        if(window.isKeyPressed(GLFW_KEY_N)){
+            float degree = 0.7f;
+            System.out.println("count degree kaki: " + counterDegreeGeleng);
+            if (counterDegreeGeleng >= 90f) {
+                gantiArah *= -1;
+                counterDegreeGeleng = 0;
+                System.out.println("ganti arah");
+            }
+            for (Object object : objects) {
+                object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
+            }
+            //kepala
+            List<Float> tempp = new ArrayList<>(objects.get(0).getCenterPoint());
+            objects.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objects.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
+            objects.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            for (Object object : objects) {
+                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
+            }
+            counterDegreeGeleng += degree;
+        }
+
+        //animasi kepala mantuk2
+        if(window.isKeyPressed(GLFW_KEY_M)){
+            float degree = 1f;
+            System.out.println("count degree kaki: " + counterDegreeKaki);
+            if (counterDegreeKaki >= 60f) {
+                gantiArah *= -1;
+                counterDegreeKaki = 0;
+                System.out.println("ganti arah");
+            }
+            for (Object object : objects) {
+                object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
+            }
+            //kepala
+            List<Float> tempp = new ArrayList<>(objects.get(0).getCenterPoint());
+            objects.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objects.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+            objects.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            for (Object object : objects) {
+                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
+            }
+            counterDegreeKaki += degree;
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_Q)) {
+            for (Object i : objects) {
+//                    i.rotateObject(1f, 0, 0, 1);
+                i.rotateObjectOnPoint(1f, 0f, 0f, 1f, i.getCpx(), i.getCpy(), i.getCpz());
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_E)) {
+            for (Object i : objects) {
+//                    i.rotateObject(-1f, 0, 0, 1);
+                i.rotateObjectOnPoint(-1f, 0f, 0f, 1f, i.getCpx(), i.getCpy(), i.getCpz());
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_W)) {
+            setYbadan(0.5f);
+            for (Object i : objects) {
+//                    i.rotateObject(1f, 1, 0, 0);
+                i.rotateObjectOnPoint(1f, 1f, 0f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_S)) {
+            setYbadan(0.5f);
+            for (Object i : objects) {
+//                    i.rotateObject(-1f, 1, 0, 0);
+                i.rotateObjectOnPoint(-1f, 1f, 0f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_A)) {
+            setYbadan(0.5f);
+            for (Object i : objects) {
+//                    i.rotateObject(1f, 0, 1, 0);
+                i.rotateObjectOnPoint(1f, 0f, 1f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_D)) {
+            setYbadan(0.5f);
+            for (Object i : objects) {
+//                    i.rotateObject(-1f, 0, 1, 0);
+                i.rotateObjectOnPoint(-1f, 0f, 1f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_U)) {
+            for (Object i : objects) {
+                i.translateObject(0f, 0f, 0.01f);
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_O)) {
+            for (Object i : objects) {
+                i.translateObject(0f, 0f, -0.01f);
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_I)) {
+            for (Object i : objects) {
+                i.translateObject(0f, 0.01f, 0f);
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_K)) {
+            for (Object i : objects) {
+                i.translateObject(0f, -0.01f, 0f);
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_J)) {
+            for (Object i : objects) {
+                i.translateObject(-0.01f, 0f, 0f);
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_L)) {
+            for (Object i : objects) {
+                i.translateObject(0.01f, 0f, 0f);
+            }
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
+            camera.moveForward(0.02f);
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
+            camera.moveBackwards(0.02f);
+        }
     }
+
 
     public void loop() {
         while (window.isOpen()) {
             window.update();
-            glClearColor(1.0f,
-                    1.0f, 1.0f,
+            glClearColor(0.678f, 0.847f, 0.902f,
                     0.0f);
             GL.createCapabilities();
             input();
 
             //code
-            for (Object object : objects) {
+//            for (Object object : objects) {
+//                object.draw();
+//                for (Object childObject : object.getChildObject()) {
+//                    childObject.draw();
+//                }
+//            }
+
+            for(Object object:objects){
+//                object.draw(camera,projection);
                 object.draw();
-                for (Object childObject: object.getChildObject()){
+                for (Object childObject : object.getChildObject()) {
+//                    childObject.draw(camera,projection);
                     childObject.draw();
                 }
             }
-            for (Object object : objectsRectangle) {
-                object.draw();
-            }
-            for (Object object : objectsPointsControl) {
-                object.drawLine();
-            }
+
+//            stripMerah.drawWithInput(GL_LINE_STRIP);
+
 
             // Restore state
             glDisableVertexAttribArray(0);
@@ -483,5 +682,9 @@ public class Main {
 
     public static void main(String[] args) {
         new Main().run();
+    }
+
+    public void setYbadan(float ybadan) {
+        this.ybadan += ybadan;
     }
 }

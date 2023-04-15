@@ -114,6 +114,16 @@ public class EllipticCone extends Circle{
                 0,
                 vertices.size());
     }
+
+    public void drawWithInput(int gl){
+        drawSetup();
+        glLineWidth(0); //ketebalan garis
+        glPointSize(0); //besar kecil vertex
+        glDrawArrays(gl,
+                0,
+                vertices.size());
+    }
+
     public void createSphere(){
         vertices.clear();
 //        float pi = (float)Math.PI;
@@ -142,14 +152,23 @@ public class EllipticCone extends Circle{
 
         ArrayList<Vector3f> temp = new ArrayList<>();
 
-        for(double v = -5; v<= 5; v+=Math.PI/60){
+        //original
+//        for(double v = -5; v<= 5; v+=Math.PI/60){
+//            for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
+//                float x = radiusX * (float)((v) * (Math.cos(u)));
+//                float y = radiusY * (float)((v) * (Math.sin(u)));
+//                float z = radiusZ * (float)(v);
+//                temp.add(new Vector3f(x,z,y));
+//            }
+//        }
+
+        for(double v = 0; v<= 4; v+=Math.PI/60){
             for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
-                float x = 0.5f * (float)((v) * (Math.cos(u)));
-                float y = 0.5f * (float)((v) * (Math.sin(u)));
-                float z = 0.5f * (float)(v);
+                float x = radiusX * (float)((v) * (Math.cos(u)));
+                float y = radiusY * (float)((v) * (Math.sin(u)));
+                float z = radiusZ * (float)(v);
                 temp.add(new Vector3f(x,z,y));
             }
-
         }
         vertices = temp;
     }
