@@ -566,7 +566,7 @@ public class Main {
 
         //animasi kepala geleng2
         if(window.isKeyPressed(GLFW_KEY_N)){
-            float degree = 0.7f;
+            float degree = 1f;
             System.out.println("count degree kaki: " + counterDegreeGeleng);
             if (counterDegreeGeleng >= 90f) {
                 gantiArah *= -1;
@@ -581,6 +581,9 @@ public class Main {
             objects.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
             objects.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
             objects.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objects.get(9).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objects.get(9).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
+            objects.get(9).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
@@ -604,6 +607,9 @@ public class Main {
             objects.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
             objects.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
             objects.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objects.get(9).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objects.get(9).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+            objects.get(9).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
