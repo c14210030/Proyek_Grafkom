@@ -429,20 +429,20 @@ public class Main {
         }
         if (window.isKeyPressed(GLFW_KEY_X)) {
             for (Object object : objects) {
-                object.rotateObject((float) Math.toRadians(0.5f), 1.0f, 0.0f, 0.0f);
+                object.rotateObject((float) Math.toRadians(1f), 1.0f, 0.0f, 0.0f);
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 1.0f, 0.0f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_Y)) {
             setYbadan(0.5f);
             for (Object object : objects) {
-                object.rotateObject((float) Math.toRadians(0.5f), 0.0f, 1.0f, 0.0f);
+                object.rotateObject((float) Math.toRadians(1f), 0.0f, 1.0f, 0.0f);
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 1.0f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_Z)) {
             for (Object object : objects) {
-                object.rotateObject((float) Math.toRadians(0.5f), 0.0f, 0.0f, 1.0f);
+                object.rotateObject((float) Math.toRadians(1f), 0.0f, 0.0f, 1.0f);
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 0.0f, 1.0f);
         }
@@ -540,16 +540,18 @@ public class Main {
         }
 
         if (window.isKeyPressed(GLFW_KEY_Q)) {
+            setYbadan(0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(1f, 0, 0, 1);
-                i.rotateObjectOnPoint(1f, 0f, 0f, 1f, i.getCpx(), i.getCpy(), i.getCpz());
+                i.rotateObjectOnPoint(1f, 0f, 0f, 1f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
         }
 
         if (window.isKeyPressed(GLFW_KEY_E)) {
+            setYbadan(0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(-1f, 0, 0, 1);
-                i.rotateObjectOnPoint(-1f, 0f, 0f, 1f, i.getCpx(), i.getCpy(), i.getCpz());
+                i.rotateObjectOnPoint(-1f, 0f, 0f, 1f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
         }
 
@@ -557,7 +559,8 @@ public class Main {
             setYbadan(0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(1f, 1, 0, 0);
-                i.rotateObjectOnPoint(1f, 1f, 0f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+                //logic: object i rotasi terhadap centerpoint object parent (dalam case ini kepala)
+                i.rotateObjectOnPoint(1f, 1f, 0f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
         }
 
@@ -565,7 +568,7 @@ public class Main {
             setYbadan(0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(-1f, 1, 0, 0);
-                i.rotateObjectOnPoint(-1f, 1f, 0f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+                i.rotateObjectOnPoint(-1f, 1f, 0f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
         }
 
@@ -573,7 +576,7 @@ public class Main {
             setYbadan(0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(1f, 0, 1, 0);
-                i.rotateObjectOnPoint(1f, 0f, 1f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+                i.rotateObjectOnPoint(1f, 0f, 1f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
         }
 
@@ -581,7 +584,7 @@ public class Main {
             setYbadan(0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(-1f, 0, 1, 0);
-                i.rotateObjectOnPoint(-1f, 0f, 1f, 0f, i.getCpx(), i.getCpy(), i.getCpz());
+                i.rotateObjectOnPoint(-1f, 0f, 1f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
         }
 

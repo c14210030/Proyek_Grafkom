@@ -238,7 +238,6 @@ public class Object extends ShaderProgram{
         }
     }
 
-
     public void updateCenterPoint(){
         Vector3f destTemp = new Vector3f();
         model.transformPosition(0.0f,0.0f,0.0f,destTemp);
@@ -283,7 +282,7 @@ public class Object extends ShaderProgram{
         //GL_LINES
         //GL_POINTS
         //GL_TRIANGLE_FAN
-        glDrawArrays(GL_TRIANGLES, 0,
+        glDrawArrays(GL_POLYGON, 0,
                 vertices.size());
         for(Object child:childObject){
             child.draw(camera,projection);
