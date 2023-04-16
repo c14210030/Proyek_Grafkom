@@ -37,8 +37,8 @@ public class Main {
     public void init() {
         window.init();
         GL.createCapabilities();
-        camera.setPosition(0,0,0.5f);
-        camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(30.0f));
+        camera.setPosition(-1.35f,0,3f);
+        camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(0f));
         mouseInput = window.getMouseInput();
         //code
         //kepala (parent)
