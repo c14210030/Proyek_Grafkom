@@ -500,20 +500,20 @@ public class Main {
         }
         if (window.isKeyPressed(GLFW_KEY_X)) {
             for (Object object : objects) {
-                object.rotateObject((float) Math.toRadians(1f), 1.0f, 0.0f, 0.0f);
+                object.rotateObject((float) Math.toRadians(0.6f), 1.0f, 0.0f, 0.0f);
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 1.0f, 0.0f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_Y)) {
-            setYbadan(0.5f);
+            setYbadan(0.6f);
             for (Object object : objects) {
-                object.rotateObject((float) Math.toRadians(1f), 0.0f, 1.0f, 0.0f);
+                object.rotateObject((float) Math.toRadians(0.6f), 0.0f, 1.0f, 0.0f);
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 1.0f, 0.0f);
         }
         if (window.isKeyPressed(GLFW_KEY_Z)) {
             for (Object object : objects) {
-                object.rotateObject((float) Math.toRadians(1f), 0.0f, 0.0f, 1.0f);
+                object.rotateObject((float) Math.toRadians(0.6f), 0.0f, 0.0f, 1.0f);
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 0.0f, 1.0f);
         }
@@ -581,6 +581,7 @@ public class Main {
             objects.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
             objects.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
             objects.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            //pacifier
             objects.get(9).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
             objects.get(9).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
             objects.get(9).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
