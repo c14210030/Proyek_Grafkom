@@ -66,17 +66,18 @@ public class Object extends ShaderProgram{
         super(shaderModuleDataList);
         this.vertices = vertices;
         setupVAOVBO();
+        this.color = color;
         uniformsMap = new UniformsMap(getProgramId());
         uniformsMap.createUniform(
                 "uni_color");
         uniformsMap.createUniform(
                 "model");
-//        uniformsMap.createUniform(
-//                "view");
-//        uniformsMap.createUniform(
-//                "projection");
-        this.color = color;
-        model = new Matrix4f().identity();
+        uniformsMap.createUniform(
+                "view");
+        uniformsMap.createUniform(
+                "projection");
+//        model = new Matrix4f().identity();
+        model = new Matrix4f();
         childObject = new ArrayList<>();
         centerPoint = Arrays.asList(0f,0f,0f);
     }
@@ -283,7 +284,7 @@ public class Object extends ShaderProgram{
         //GL_LINES
         //GL_POINTS
         //GL_TRIANGLE_FAN
-        glDrawArrays(GL_TRIANGLES, 0,
+        glDrawArrays(GL_POLYGON, 0,
                 vertices.size());
         for(Object child:childObject){
             child.draw(camera,projection);
