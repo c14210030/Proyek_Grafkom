@@ -410,6 +410,77 @@ public class Main {
 //                18
 //        );
 //        stripMerah.translateObject(0f, -0.57f, 0f);
+
+        //pembatas dot pacifier
+        objects.add(new Cylinder(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.807f, 0.572f, 0.572f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.05f,
+                0.02f,
+                0.05f,
+                36,
+                18
+        ));
+        objects.get(9).rotateObject((float)Math.toRadians(90f),1f,0f,0f);
+        objects.get(9).translateObject(0.5f,0f,0f);
+
+        //pegangan pacifier
+        objects.get(9).getChildObject().add(new Sphere(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.960f, 0.8f, 0.8f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.03f,
+                0.03f,
+                0.03f,
+                36,
+                18
+        ));
+        objects.get(9).getChildObject().get(0).translateObject(0.5f,0f,-0.05f);
+
+        //penghubung dot pacifier
+        objects.get(9).getChildObject().add(new Ellipsoid(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.960f, 0.8f, 0.8f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.02f,
+                0.02f,
+                0.04f,
+                36,
+                18
+        ));
+        objects.get(9).getChildObject().get(1).translateObject(0.5f,0f,-0.02f);
+
+        //dot pacifier
+        objects.get(9).getChildObject().add(new Sphere(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.964f, 0.874f,0.874f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.015f,
+                0.015f,
+                0.015f,
+                36,
+                18
+        ));
+        objects.get(9).getChildObject().get(2).translateObject(0.5f,0f,0.02f);
+        objects.get(9).translateObject(-0.5f,-0.027f,-0.275f);
+        objects.get(9).rotateObject((float)Math.toRadians(-7f),1f,0f,0f);
     }
 
     public void input() {
@@ -581,7 +652,7 @@ public class Main {
         }
 
         if (window.isKeyPressed(GLFW_KEY_D)) {
-            setYbadan(0.5f);
+            setYbadan(-0.5f);
             for (Object i : objects) {
 //                    i.rotateObject(-1f, 0, 1, 0);
                 i.rotateObjectOnPoint(-1f, 0f, 1f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
