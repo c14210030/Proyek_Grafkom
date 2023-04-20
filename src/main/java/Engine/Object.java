@@ -230,12 +230,13 @@ public class Object extends ShaderProgram{
         centerPoint.set(0, newcpx);
         centerPoint.set(1, newcpy);
 
-        translateObject(rotateX, rotateY, rotateZ);
+//        translateObject(rotateX, rotateY, rotateZ);
 
         for (Object i: childObject)
         {
             i.rotateObjectOnPoint(degree, offsetX, offsetY, offsetZ, rotateX, rotateY, rotateZ);
         }
+        translateObject(rotateX, rotateY, rotateZ);
     }
 
     public void updateCenterPoint(){

@@ -585,17 +585,21 @@ public class Main {
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
             }
-            //kepala
             List<Float> tempp = new ArrayList<>(objectsBrown.get(0).getCenterPoint());
             objectsBrown.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
             objectsBrown.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
             objectsBrown.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+
             objectsBrown.get(9).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
             objectsBrown.get(9).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
             objectsBrown.get(9).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
+
+            //kepala
+//            objectsBrown.get(0).rotateObjectOnPoint(gantiArah*degree, 1f,0f,0f,objectsBrown.get(0).getCpx(), objectsBrown.get(0).getCpy(), objectsBrown.get(0).getCpz());
+//            objectsBrown.get(9).rotateObjectOnPoint(gantiArah*degree, 1f,0f,0f,objectsBrown.get(0).getCpx(), objectsBrown.get(0).getCpy(), objectsBrown.get(0).getCpz());
             counterDegreeKaki += degree;
         }
 
