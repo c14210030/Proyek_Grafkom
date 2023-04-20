@@ -1901,7 +1901,7 @@ public class Main {
 
         //animasi kepala mantuk2
         if(window.isKeyPressed(GLFW_KEY_M)){
-            float degree = 1f;
+            float degree = 0.7f;
             System.out.println("count degree kaki: " + counterDegreeKaki);
             if (counterDegreeKaki >= 60f) {
                 gantiArah *= -1;
