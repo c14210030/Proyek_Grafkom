@@ -1815,7 +1815,7 @@ public class Main {
             setYbadan(0.6f);
             for (Object object : objectsBrown) {
 //                object.rotateObject((float) Math.toRadians(0.6f), 0.0f, 1.0f, 0.0f);
-                object.rotateObjectOnPoint(1f, 0f, 1f, 0f, objectsBrown.get(0).getCpx(), objectsBrown.get(0).getCpy(), objectsBrown.get(0).getCpz());
+                object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objectsBrown.get(0).getCpx(), objectsBrown.get(0).getCpy(), objectsBrown.get(0).getCpz());
             }
 //            stripMerah.rotateObject((float) Math.toRadians(0.5f), 0.0f, 1.0f, 0.0f);
         }
