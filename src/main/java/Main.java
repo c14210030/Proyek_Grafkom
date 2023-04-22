@@ -25,7 +25,7 @@ public class Main {
     private ArrayList<Object> objectsPointsControl
             = new ArrayList<>();
     Camera camera = new Camera();
-    Projection projection = new Projection(window.getWidth(),window.getHeight());
+    Projection projection = new Projection(window.getWidth(), window.getHeight());
     private EllipticCone stripMerah;
     private MouseInput mouseInput;
     int countDegree = 0;
@@ -43,35 +43,37 @@ public class Main {
     public ArrayList<Object> bezier7 = new ArrayList<>();
     public ArrayList<Object> bezier8 = new ArrayList<>();
     public static float[][] controlbezier1 = {
-            { -0.0675f, 0.0725f, -0.222f},
-            { -0.01f, 0.0325f, -0.222f}
+            {-0.0675f, 0.0725f, -0.222f},
+            {-0.01f, 0.0325f, -0.222f}
     };
     public static float[][] controlbezier2 = {
-            { -0.01f, 0.0325f, -0.222f},
-            { 0.0675f,0.0725f, -0.222f}
+            {-0.01f, 0.0325f, -0.222f},
+            {0.0675f, 0.0725f, -0.222f}
     };
     // garis kiri nike
     public static float[][] controlbezier3 = {
-            { -0.0375f, 0.0525f, -0.222f},
-            { -0.01f, 0.0325f, -0.222f}
+            {-0.0375f, 0.0525f, -0.222f},
+            {-0.01f, 0.0325f, -0.222f}
     };
     public static float[][] controlbezier4 = {
-            { -0.09f, 0.07f, -0.18f},
-            { -0.02f, 0.09f, -0.18f}
+            {-0.09f, 0.07f, -0.18f},
+            {-0.02f, 0.09f, -0.18f}
     };
     public static float[][] controlbezier5 = {
-            { 0.02f, 0.09f, -0.18f},
-            { 0.09f, 0.07f, -0.18f}
+            {0.02f, 0.09f, -0.18f},
+            {0.09f, 0.07f, -0.18f}
     };
+    boolean babify = false;
+    Brown brown = new Brown();
 
     public void init() {
         window.init();
         GL.createCapabilities();
-        camera.setPosition(0,0,0.5f);
-        camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(30.0f));
+        camera.setPosition(0, 0, 0.5f);
+        camera.setRotation((float) Math.toRadians(0.0f), (float) Math.toRadians(30.0f));
         mouseInput = window.getMouseInput();
         //code
-        Brown brown = new Brown();
+//        Brown brown = new Brown();
         brown.init(objectsBrown);
     }
 
@@ -124,32 +126,32 @@ public class Main {
             }
             //kaki kanan
             List<Float> tempp = new ArrayList<>(objectsBrown.get(4).getCenterPoint());
-            objectsBrown.get(4).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objectsBrown.get(4).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
             objectsBrown.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-            objectsBrown.get(4).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objectsBrown.get(4).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
             //kaki kiri
             List<Float> temp1 = new ArrayList<>(objectsBrown.get(5).getCenterPoint());
-            objectsBrown.get(5).translateObject(temp1.get(0)*-1,temp1.get(1)*-1,temp1.get(2)*-1);
+            objectsBrown.get(5).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
             objectsBrown.get(5).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-            objectsBrown.get(5).translateObject(temp1.get(0)*1,temp1.get(1)*1,temp1.get(2)*1);
+            objectsBrown.get(5).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
             //telapak kaki kanan
-            objectsBrown.get(6).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objectsBrown.get(6).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
             objectsBrown.get(6).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-            objectsBrown.get(6).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objectsBrown.get(6).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
             //telapak kaki kiri
-            objectsBrown.get(7).translateObject(temp1.get(0)*-1,temp1.get(1)*-1,temp1.get(2)*-1);
+            objectsBrown.get(7).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
             objectsBrown.get(7).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-            objectsBrown.get(7).translateObject(temp1.get(0)*1,temp1.get(1)*1,temp1.get(2)*1);
+            objectsBrown.get(7).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
             //tangan kanan
             List<Float> temp2 = new ArrayList<>(objectsBrown.get(2).getCenterPoint());
-            objectsBrown.get(2).translateObject(temp2.get(0)*-1,temp2.get(1)*-1,temp2.get(2)*-1);
-            objectsBrown.get(2).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 1f, 0f,0f);
-            objectsBrown.get(2).translateObject(temp2.get(0)*1,temp2.get(1)*1,temp2.get(2)*1);
+            objectsBrown.get(2).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
+            objectsBrown.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+            objectsBrown.get(2).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
             //tangan kiri
             List<Float> temp3 = new ArrayList<>(objectsBrown.get(3).getCenterPoint());
-            objectsBrown.get(3).translateObject(temp3.get(0)*-1,temp3.get(1)*-1,temp3.get(2)*-1);
-            objectsBrown.get(3).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
-            objectsBrown.get(3).translateObject(temp3.get(0)*1,temp3.get(1)*1,temp3.get(2)*1);
+            objectsBrown.get(3).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
+            objectsBrown.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+            objectsBrown.get(3).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
@@ -157,7 +159,7 @@ public class Main {
         }
 
         //animasi kepala geleng2
-        if(window.isKeyPressed(GLFW_KEY_N)){
+        if (window.isKeyPressed(GLFW_KEY_N)) {
             float degree = 1f;
             System.out.println("count degree kaki: " + counterDegreeGeleng);
             if (counterDegreeGeleng >= 90f) {
@@ -170,13 +172,13 @@ public class Main {
             }
             //kepala
             List<Float> tempp = new ArrayList<>(objectsBrown.get(0).getCenterPoint());
-            objectsBrown.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objectsBrown.get(0).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
             objectsBrown.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
-            objectsBrown.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objectsBrown.get(0).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
             //pacifier
-            objectsBrown.get(9).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objectsBrown.get(9).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
             objectsBrown.get(9).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 1f, 0f);
-            objectsBrown.get(9).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objectsBrown.get(9).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
@@ -184,7 +186,7 @@ public class Main {
         }
 
         //animasi kepala mantuk2
-        if(window.isKeyPressed(GLFW_KEY_M)){
+        if (window.isKeyPressed(GLFW_KEY_M)) {
             float degree = 0.7f;
             System.out.println("count degree kaki: " + counterDegreeKaki);
             if (counterDegreeKaki >= 60f) {
@@ -196,13 +198,13 @@ public class Main {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
             }
             List<Float> tempp = new ArrayList<>(objectsBrown.get(0).getCenterPoint());
-            objectsBrown.get(0).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objectsBrown.get(0).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
             objectsBrown.get(0).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-            objectsBrown.get(0).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objectsBrown.get(0).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
 
-            objectsBrown.get(9).translateObject(tempp.get(0)*-1, tempp.get(1)*-1, tempp.get(2)*-1);
+            objectsBrown.get(9).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
             objectsBrown.get(9).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-            objectsBrown.get(9).translateObject(tempp.get(0)*1, tempp.get(1)*1, tempp.get(2)*1);
+            objectsBrown.get(9).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
@@ -305,6 +307,14 @@ public class Main {
         if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
             camera.moveBackwards(0.02f);
         }
+
+        if (window.isKeyPressed(GLFW_KEY_1)) {
+            babify = true;
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_0)) {
+            babify = false;
+        }
     }
 
 
@@ -324,19 +334,36 @@ public class Main {
 //                }
 //            }
 
-            for(Object object: objectsBrown){
-//                object.draw(camera,projection);
-                object.draw();
-                for (Object childObject : object.getChildObject()) {
+            for (Object object : objectsBrown) {
+//                    object.draw();
+//                    for (Object childObject : object.getChildObject()) {
+//    //                    childObject.draw(camera,projection);
+//                        childObject.draw();
+//                    }
+                //obj 9 pacifer
+                //kalau bkn obj 9 draw
+                if (object != objectsBrown.get(9)) {
+                    object.draw();
+                    for (Object childObject : object.getChildObject()) {
 //                    childObject.draw(camera,projection);
-                    childObject.draw();
+                        childObject.draw();
+                    }
                 }
+                //kalau obj 9 cek dulu apakah sdh dibabify
+                else if (object == objectsBrown.get(9) && babify) {
+                    object.draw();
+                    for (Object childObject : object.getChildObject()) {
+//                    childObject.draw(camera,projection);
+                        childObject.draw();
+                    }
+                }
+
             }
 
-            for (Object object: bezier5){
+            for (Object object : bezier5) {
                 object.drawLine();
             }
-            for (Object object: bezier6){
+            for (Object object : bezier6) {
                 object.drawLine();
             }
 
@@ -386,35 +413,37 @@ public class Main {
             }
             if (tes == 0) {
                 //leonard
-                if (pilihan == 0){
+                if (pilihan == 0) {
                     bezier1.get(0).addVertices(new Vector3f(x, y, z));
                 }
-                if (pilihan == 1){
+                if (pilihan == 1) {
                     bezier2.get(0).addVertices(new Vector3f(x, y, z));
                 }
                 //cony
-                if (pilihan == 2){
+                if (pilihan == 2) {
                     bezier3.get(0).addVertices(new Vector3f(x, y, z));
                 }
-                if (pilihan == 3){
+                if (pilihan == 3) {
                     bezier4.get(0).addVertices(new Vector3f(x, y, z));
                 }
                 //brown
-                if (pilihan == 4){
+                if (pilihan == 4) {
                     bezier5.get(0).addVertices(new Vector3f(x, y, z));
                 }
-                if (pilihan == 5){
+                if (pilihan == 5) {
                     bezier6.get(0).addVertices(new Vector3f(x, y, z));
                 }
                 //sally
-                if (pilihan == 6){
+                if (pilihan == 6) {
                     bezier7.get(0).addVertices(new Vector3f(x, y, z));
-                }if (pilihan == 7){
+                }
+                if (pilihan == 7) {
                     bezier8.get(0).addVertices(new Vector3f(x, y, z));
                 }
             }
         }
     }
+
     public int koefSegitigaPascal(int n, int k) {
         if (k < 0 || k > n) {
             return 0;
