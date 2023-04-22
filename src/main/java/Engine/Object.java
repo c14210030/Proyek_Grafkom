@@ -193,7 +193,7 @@ public class Object extends ShaderProgram{
         drawSetup();
         // Draw the vertices
         //optional
-        glLineWidth(1); //ketebalan garis
+        glLineWidth(3); //ketebalan garis
         glPointSize(1); //besar kecil vertex
         glDrawArrays(GL_LINE_STRIP,
                 0,

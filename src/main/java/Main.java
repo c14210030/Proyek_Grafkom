@@ -1,6 +1,7 @@
 import Engine.*;
 import Engine.Object;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
 
@@ -32,6 +33,36 @@ public class Main {
     float counterDegreeGeleng = 45f;
     int gantiArah = 1;
     float ybadan = 0f;
+    int tes;
+    public ArrayList<Object> bezier1 = new ArrayList<>();
+    public ArrayList<Object> bezier2 = new ArrayList<>();
+    public ArrayList<Object> bezier3 = new ArrayList<>();
+    public ArrayList<Object> bezier4 = new ArrayList<>();
+    public ArrayList<Object> bezier5 = new ArrayList<>();
+    public ArrayList<Object> bezier6 = new ArrayList<>();
+    public ArrayList<Object> bezier7 = new ArrayList<>();
+    public ArrayList<Object> bezier8 = new ArrayList<>();
+    public static float[][] controlbezier1 = {
+            { -0.0675f, 0.0725f, -0.222f},
+            { -0.01f, 0.0325f, -0.222f}
+    };
+    public static float[][] controlbezier2 = {
+            { -0.01f, 0.0325f, -0.222f},
+            { 0.0675f,0.0725f, -0.222f}
+    };
+    // garis kiri nike
+    public static float[][] controlbezier3 = {
+            { -0.0375f, 0.0525f, -0.222f},
+            { -0.01f, 0.0325f, -0.222f}
+    };
+    public static float[][] controlbezier4 = {
+            { -0.09f, 0.07f, -0.18f},
+            { -0.02f, 0.09f, -0.18f}
+    };
+    public static float[][] controlbezier5 = {
+            { 0.02f, 0.09f, -0.18f},
+            { 0.09f, 0.07f, -0.18f}
+    };
 
     public void init() {
         window.init();
@@ -463,6 +494,38 @@ public class Main {
         objectsBrown.get(9).getChildObject().get(2).translateObject(0.5f,0f,0.02f);
         objectsBrown.get(9).translateObject(-0.5f,-0.027f,-0.275f);
         objectsBrown.get(9).rotateObject((float)Math.toRadians(-7f),1f,0f,0f);
+
+        //logo nike di celana dalem
+        bezier5.add(new Object(
+                Arrays.asList(
+                        //shaderFile lokasi menyesuaikan objectnya
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
+        ));
+        bezier6.add(new Object(
+                Arrays.asList(
+                        //shaderFile lokasi menyesuaikan objectnya
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
+        ));
+        bezierMulut(controlbezier3,4);
+        objectsBrown.get(8).getChildObject().add(bezier5.get(0));
+        objectsBrown.get(8).getChildObject().get(0).translateObject(0f,-0.3f,-0.2f);
+        objectsBrown.get(8).getChildObject().get(0).rotateObject((float)Math.toRadians(45f),-1f,0f,0f);
+        bezierMulut(controlbezier2,5);
+        objectsBrown.get(8).getChildObject().add(bezier6.get(0));
+        objectsBrown.get(8).getChildObject().get(1).translateObject(0f,-0.3f,-0.2f);
+        objectsBrown.get(8).getChildObject().get(1).rotateObject((float)Math.toRadians(45f),-1f,0f,0f);
     }
 
     public void input() {
@@ -723,7 +786,12 @@ public class Main {
                 }
             }
 
-//            stripMerah.drawWithInput(GL_LINE_STRIP);
+            for (Object object: bezier5){
+                object.drawLine();
+            }
+            for (Object object: bezier6){
+                object.drawLine();
+            }
 
 
             // Restore state
@@ -753,5 +821,62 @@ public class Main {
 
     public void setYbadan(float ybadan) {
         this.ybadan += ybadan;
+    }
+
+    public void bezierMulut(float[][] floats, int pilihan) {
+        int indexbezier = 0;
+        for (float t = 0; t <= 1; t += 0.01f) {
+            float x = 0;
+            float y = 0;
+            float z = 0;
+            int n = floats.length - 1;
+            for (int i = 0; i <= n; i++) {
+                int koefisien = koefSegitigaPascal(n, i);
+                float term = koefisien * (float) Math.pow(1 - t, n - i) * (float) Math.pow(t, i);
+                x += term * floats[i][0];
+                y += term * floats[i][1];
+                z += term * floats[i][2];
+            }
+            if (tes == 0) {
+                //leonard
+                if (pilihan == 0){
+                    bezier1.get(0).addVertices(new Vector3f(x, y, z));
+                }
+                if (pilihan == 1){
+                    bezier2.get(0).addVertices(new Vector3f(x, y, z));
+                }
+                //cony
+                if (pilihan == 2){
+                    bezier3.get(0).addVertices(new Vector3f(x, y, z));
+                }
+                if (pilihan == 3){
+                    bezier4.get(0).addVertices(new Vector3f(x, y, z));
+                }
+                //brown
+                if (pilihan == 4){
+                    bezier5.get(0).addVertices(new Vector3f(x, y, z));
+                }
+                if (pilihan == 5){
+                    bezier6.get(0).addVertices(new Vector3f(x, y, z));
+                }
+                //sally
+                if (pilihan == 6){
+                    bezier7.get(0).addVertices(new Vector3f(x, y, z));
+                }if (pilihan == 7){
+                    bezier8.get(0).addVertices(new Vector3f(x, y, z));
+                }
+            }
+        }
+    }
+    public int koefSegitigaPascal(int n, int k) {
+        if (k < 0 || k > n) {
+            return 0;
+        }
+        int koef = 1;
+        for (int i = 0; i < k; i++) {
+            koef *= (n - i);
+            koef /= (i + 1);
+        }
+        return koef;
     }
 }
